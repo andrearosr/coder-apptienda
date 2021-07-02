@@ -1,10 +1,16 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, Button, StyleSheet } from 'react-native';
 
-const CategoryBreadScreen = () => {
+const CategoryBreadScreen = ({ navigation, styles }) => {
   return (
-    <View style={styles.screen}>
+    <View style={[styles.screen, styles]}>
       <Text>Category Bread Screen</Text>
+      <Button
+        title="Ir a Detalle"
+        onPress={() => {
+          navigation.navigate('DetailBread')
+        }}
+      />
     </View>
   )
 }
