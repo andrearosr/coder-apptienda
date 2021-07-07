@@ -1,26 +1,24 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { FlatList } from 'react-native';
+import CategoryGridItem from '../components/CategoryGridItem';
+import { CATEGORIES } from '../data/categories';
 
 const CategoriesScreen = ({ navigation }) => {
+  const handleSelected = (item) => {
+    navigation.navigate('BreadCategory', {
+      categoryID: item.id,
+      name: item.name,
+    });
+  }
+  const renderItem = ({ item }) => <CategoryGridItem item={item} onSelected={handleSelected} />
   return (
-    <View style={styles.screen}>
-      <Text>Category Screen</Text>
-      <Button
-        title="Ir a Categorias de Pan"
-        onPress={() => {
-          navigation.navigate('BreadCategory')
-        }}
-      />
-    </View>
+    <FlatList
+      data={CATEGORIES}
+      renderItem={renderItem}
+      keyExtractor={item => item.id}
+      numColumns={2}
+    />
   )
 }
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 
 export default CategoriesScreen;

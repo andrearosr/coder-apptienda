@@ -1,10 +1,13 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const BreadDetailScreen = () => {
+const BreadDetailScreen = ({ route }) => {
   return (
     <View style={styles.screen}>
-      <Text>Bread Detail Screen</Text>
+      <Text>{route.params.item.name}</Text>
+      <Text>{route.params.item.description}</Text>
+      <Text>${route.params.item.price}</Text>
+      <Text>{route.params.item.weight}gr</Text>
     </View>
   )
 }
