@@ -1,13 +1,16 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { useSelector } from 'react-redux';
 
-const BreadDetailScreen = ({ route }) => {
+const BreadDetailScreen = () => {
+  const item = useSelector(state => state.breads.selected) || {};
+
   return (
     <View style={styles.screen}>
-      <Text>{route.params.item.name}</Text>
-      <Text>{route.params.item.description}</Text>
-      <Text>${route.params.item.price}</Text>
-      <Text>{route.params.item.weight}gr</Text>
+      <Text>{item.name}</Text>
+      <Text>{item.description}</Text>
+      <Text>${item.price}</Text>
+      <Text>{item.weight}gr</Text>
     </View>
   )
 }

@@ -20,7 +20,7 @@ const CategoryGridItem = ({ item, onSelected }) => {
         style={{ ...styles.container, backgroundColor: item.color }}
       >
         <View>
-          <Text styles={styles.title}>{item.name}</Text>
+          <Text style={styles.title}>{item.name}</Text>
         </View>
       </TouchableComponent>
     </View>
