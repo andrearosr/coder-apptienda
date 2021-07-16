@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, Text, Button, StyleSheet, FlatList } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteItem } from '../store/actions/cart.action';
+import { confirmCart, deleteItem } from '../store/actions/cart.action';
+import Colors from '../constants/colors';
 
 import CartItem from '../components/CartItem';
 
@@ -11,6 +12,7 @@ const CartScreen = () => {
   const total = useSelector(state => state.cart.total);
 
   const handleDeleteItem = (id) => dispatch(deleteItem(id));
+  const handleConfirmCart = () => dispatch(confirmCart(items));
 
   const renderItem = (data) => {
     return (
@@ -27,6 +29,7 @@ const CartScreen = () => {
           renderItem={renderItem}
         />
       </View>
+      <Button title="CONFIRMAR" onPress={handleConfirmCart} color={Colors.primary} />
       <View style={styles.footer}>
         <Text style={styles.text}>TOTAL</Text>
         <Text style={styles.text}>${total}</Text>

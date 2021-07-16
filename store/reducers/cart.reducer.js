@@ -3,6 +3,7 @@ import { ADD_ITEM, DELETE_ITEM, CONFIRM_CART } from "../actions/cart.action";
 const INITIAL_STATE = {
   items: [],
   total: 0,
+  confirm: false,
 };
 
 const sumTotal = list => list
