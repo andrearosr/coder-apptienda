@@ -1,9 +1,15 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { useSelector } from 'react-redux';
+import { View, Text, Button, StyleSheet } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
+import ShowCart from '../components/ShowCart';
 
-const BreadDetailScreen = () => {
+import { addItem } from '../store/actions/cart.action';
+
+const BreadDetailScreen = ({ navigation }) => {
+  const dispatch = useDispatch();
   const item = useSelector(state => state.breads.selected) || {};
+
+  const handleAddItem = () => dispatch(addItem(item));
 
   return (
     <View style={styles.screen}>
@@ -11,6 +17,8 @@ const BreadDetailScreen = () => {
       <Text>{item.description}</Text>
       <Text>${item.price}</Text>
       <Text>{item.weight}gr</Text>
+      <Button title="AGREGAR AL CARRITO" onPress={handleAddItem} />
+      <ShowCart navigation={navigation} />
     </View>
   )
 }
