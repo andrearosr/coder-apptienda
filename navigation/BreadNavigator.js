@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import BreadDetailScreen from "../screens/BreadDetailScreen";
 import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryBreadScreen from '../screens/CategoryBreadScreen';
+import CartScreen from '../screens/CartScreen';
 import Colors from '../constants/colors';
 
 const Stack = createStackNavigator();
@@ -37,6 +38,11 @@ const BreadNavigator = () => (
         name="DetailBread"
         component={BreadDetailScreen}
         options={({ route }) => ({ title: route.params.name })}
+      />
+      <Stack.Screen
+        name="Cart"
+        component={CartScreen}
+        option={{ title: 'Carrito' }}
       />
     </Stack.Navigator>
   </NavigationContainer>
