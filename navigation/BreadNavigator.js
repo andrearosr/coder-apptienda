@@ -42,7 +42,7 @@ const BreadNavigator = () => (
       <Stack.Screen
         name="Cart"
         component={CartScreen}
-        option={{ title: 'Carrito' }}
+        options={{ title: 'Carrito' }}
       />
     </Stack.Navigator>
   </NavigationContainer>

@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, Button, StyleSheet } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
+import ShowCart from '../components/ShowCart';
 
 import { addItem } from '../store/actions/cart.action';
 
-const BreadDetailScreen = () => {
+const BreadDetailScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const item = useSelector(state => state.breads.selected) || {};
 
@@ -17,6 +18,7 @@ const BreadDetailScreen = () => {
       <Text>${item.price}</Text>
       <Text>{item.weight}gr</Text>
       <Button title="AGREGAR AL CARRITO" onPress={handleAddItem} />
+      <ShowCart navigation={navigation} />
     </View>
   )
 }
