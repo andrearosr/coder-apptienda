@@ -6,6 +6,10 @@ import BreadNavigator from './navigation/BreadNavigator';
 
 import store from './store';
 
+if (__DEV__) {
+  import('./ReactotronConfig').then(() => console.log('Reactotron Configured'))
+}
+
 export default function App() {
   const [fontsLoaded] = useFonts({
     'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
