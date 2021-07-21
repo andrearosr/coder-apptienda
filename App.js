@@ -2,7 +2,7 @@ import React from 'react';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import { Provider } from 'react-redux';
-import BreadNavigator from './navigation/BreadNavigator';
+import MainNavigator from './navigation';
 
 import store from './store';
 
@@ -20,7 +20,7 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <BreadNavigator />
+      <MainNavigator />
     </Provider>
   );
 }
