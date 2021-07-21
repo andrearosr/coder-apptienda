@@ -1,9 +1,78 @@
-import React from 'react';
-import { StyleSheet, View, Text, Button, KeyboardAvoidingView } from 'react-native';
+import React, { useState, useEffect, useReducer, useCallback } from 'react';
+import { StyleSheet, View, Text, Button, KeyboardAvoidingView, Alert } from 'react-native';
+import { useDispatch } from 'react-redux';
 import Input from '../../components/Input';
 import Colors from '../../constants/colors';
+import { signup } from '../../store/actions/auth.actions';
+
+const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
+
+const formReducer = (state, action) => {
+  if (action.type === FORM_INPUT_UPDATE) {
+    const updatedValues = {
+      ...state.inputValues,
+      [action.input]: action.value,
+    };
+
+    const updatedValidities = {
+      ...state.inputValidities,
+      [action.input]: action.isValid,
+    };
+
+    let updatedFormIsValid = true;
+    for (const key in updatedValidities) {
+      updatedFormIsValid = updatedFormIsValid && updatedValidities[key];
+    }
+
+    return {
+      formIsValid: updatedFormIsValid,
+      inputValidities: updatedValidities,
+      inputValues: updatedValues,
+    };
+  }
+
+  return state;
+}
 
 const AuthScreen = () => {
+  const dispatch = useDispatch();
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (error) {
+      Alert.alert("Ha ocurrido un error", error, [{ text: 'Ok' }]);
+    }
+  }, [error]);
+
+  const [formState, dispatchFormState] = useReducer(formReducer, {
+    inputValues: {
+      email: '',
+      password: '',
+    },
+    inputValidities: {
+      email: false,
+      password: false,
+    },
+    formIsValid: false,
+  });
+
+  const onInputChangeHandler = useCallback((inputIdentifier, inputValue, inputValidity) => {
+    dispatchFormState({
+      type: FORM_INPUT_UPDATE,
+      input: inputIdentifier,
+      value: inputValue,
+      isValid: inputValidity,
+    });
+  }, [dispatchFormState]);
+
+  const onSignupHandler = () => {
+    try {
+      dispatch(signup(formState.inputValues.email, formState.inputValues.password));
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
   return (
     <KeyboardAvoidingView
       behavior="padding"
@@ -21,7 +90,7 @@ const AuthScreen = () => {
             email
             autoCapitalize="none"
             errorText="Por favor ingrese un email válido"
-            onInputChange={() => {}}
+            onInputChange={onInputChangeHandler}
             initialValue=""
           />
           <Input
@@ -33,7 +102,7 @@ const AuthScreen = () => {
             minLength={6}
             autoCapitalize="none"
             errorText="Por favor ingrese una clave de al menos 6 caracteres"
-            onInputChange={() => {}}
+            onInputChange={onInputChangeHandler}
             initialValue=""
           />
         </View>
@@ -42,7 +111,7 @@ const AuthScreen = () => {
             <Button title="ACCEDER" color={Colors.primary} onPress={() => {}} />
           </View>
           <View style={styles.button}>
-            <Button title="REGISTRARSE" color={Colors.accent} onPress={() => { }} />
+            <Button title="REGISTRARSE" color={Colors.accent} onPress={onSignupHandler} />
           </View>
         </View>
       </View>
