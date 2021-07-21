@@ -65,9 +65,9 @@ const AuthScreen = () => {
     });
   }, [dispatchFormState]);
 
-  const onSignupHandler = () => {
+  const onSignupHandler = async () => {
     try {
-      dispatch(signup(formState.inputValues.email, formState.inputValues.password));
+      await dispatch(signup(formState.inputValues.email, formState.inputValues.password));
     } catch (err) {
       setError(err.message);
     }
