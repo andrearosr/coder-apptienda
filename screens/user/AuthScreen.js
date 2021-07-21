@@ -30,7 +30,7 @@ const AuthScreen = () => {
             keyboardType="default"
             secureTextEntry
             required
-            maxLength={6}
+            minLength={6}
             autoCapitalize="none"
             errorText="Por favor ingrese una clave de al menos 6 caracteres"
             onInputChange={() => {}}
