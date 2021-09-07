@@ -4,6 +4,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import BreadNavigator from './navigation/BreadNavigator';
+import { Provider } from 'react-redux';
+import store from './store';
 
 export default function App() {
   const [loaded] = useFonts({
@@ -14,7 +16,9 @@ export default function App() {
   if (!loaded) return <AppLoading />
 
   return (
-    <BreadNavigator />
+    <Provider store={store}>
+      <BreadNavigator />
+    </Provider>
   );
 }
 

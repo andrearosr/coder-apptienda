@@ -1,10 +1,12 @@
 import React from 'react';
 import { FlatList } from 'react-native';
+import { useSelector } from 'react-redux';
 import { BREADS } from '../data/breads';
 import BreadItem from '../components/BreadItem';
 
-export default function CategoryBreadsScreen({ navigation, route }) {
-  const breads = BREADS.filter(bread => bread.category === route.params.categoryID);
+export default function CategoryBreadsScreen({ navigation }) {
+  const categoryID = useSelector(state => state.categories.selectedID);
+  const breads = BREADS.filter(bread => bread.category === categoryID);
 
   const handleSelected = (item) => {
     navigation.navigate('Detail', {
