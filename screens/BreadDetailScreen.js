@@ -1,9 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { BREADS } from '../data/breads';
+import { useSelector } from 'react-redux';
 
-export default function BreadDetailScreen({ route }) {
-  const bread = BREADS.find(item => item.id === route.params.productID);
+export default function BreadDetailScreen() {
+  const breadID = useSelector(state => state.breads.selectedID);
+  const breads = useSelector(state => state.breads.list);
+  const bread = breads.find(item => item.id === breadID);
+  
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{bread.name}</Text>
