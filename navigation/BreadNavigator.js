@@ -32,7 +32,6 @@ const BreadNavigator = () => (
         component={CategoriesScreen}
         options={{
           title: 'Mi Pan',
-          headerStyle: { backgroundColor: COLORS.accent },
         }}
       />
       <Stack.Screen
