@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, View, ActivityIndicator } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import BreadItem from '../components/BreadItem';
 import { selectBread, filterBreads } from '../store/actions/bread.actions';
+import { COLORS } from '../constants/colors';
 
 export default function CategoryBreadsScreen({ navigation }) {
   const dispatch = useDispatch();
@@ -10,7 +11,12 @@ export default function CategoryBreadsScreen({ navigation }) {
   const breads = useSelector(state => state.breads.filteredBreads);
 
   useEffect(() => {
-    dispatch(filterBreads(categoryID));
+    // dispatch(filterBreads());
+    setTimeout(() => dispatch(filterBreads(categoryID)), 1000);
+
+    return () => {
+      dispatch(filterBreads());
+    }
   }, [categoryID]);
 
   const handleSelected = (item) => {
@@ -25,10 +31,16 @@ export default function CategoryBreadsScreen({ navigation }) {
   )
 
   return (
-    <FlatList
-      data={breads}
-      keyExtractor={item => item.id}
-      renderItem={renderItemBread}
-    />
+    <View>
+      {breads.length
+        ? (
+          <FlatList
+            data={breads}
+            keyExtractor={item => item.id}
+            renderItem={renderItemBread}
+          />
+        )
+        : <ActivityIndicator color={COLORS.accent} size="large" />}
+    </View>
   );
 }
