@@ -6,7 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { addItem } from '../store/actions/cart.actions';
 import { COLORS } from '../constants/colors';
 
-export default function BreadDetailScreen() {
+export default function BreadDetailScreen({ navigation }) {
   const dispatch = useDispatch();
   const breadID = useSelector(state => state.breads.selectedID);
   const breads = useSelector(state => state.breads.list);

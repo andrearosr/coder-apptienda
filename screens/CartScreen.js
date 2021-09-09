@@ -28,14 +28,22 @@ const CartScreen = () => {
         />
       </View>
       <View style={styles.footer}>
-        <ActivityIndicator
-          animating={status === 'loading'}
-          size="large"
-          color={COLORS.accent}
-        />
-        <TouchableOpacity style={styles.confirm} onPress={handlerConfirmCart}>
-          <Text>Confirmar</Text>
-        </TouchableOpacity>
+        {status === 'loading'
+         ? (
+            <ActivityIndicator
+              size="large"
+              color={COLORS.accent}
+            />
+         )
+         : (
+            <TouchableOpacity style={styles.confirm} onPress={handlerConfirmCart}>
+              <Text>Confirmar</Text>
+              <View style={styles.total}>
+                <Text style={styles.text}>Total</Text>
+                <Text style={styles.text}>${total}</Text>
+              </View>
+            </TouchableOpacity>
+         )}
       </View>
     </View>
   );
