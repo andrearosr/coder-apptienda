@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryBreadScreen from '../screens/CategoryBreadsScreen';
 import BreadDetailScreen from '../screens/BreadDetailScreen';
+import CartScreen from '../screens/CartScreen';
 import { COLORS } from '../constants/colors';
 
 const Stack = createNativeStackNavigator();
@@ -47,6 +48,11 @@ const BreadNavigator = () => (
         options={({ route }) => ({
           title: route.params.name,
         })}
+      />
+      <Stack.Screen
+        name="Cart"
+        component={CartScreen}
+        options={{ title: 'Carrito' }}
       />
     </Stack.Navigator>
   </NavigationContainer>
