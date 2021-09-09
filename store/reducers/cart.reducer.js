@@ -1,8 +1,9 @@
-import { ADD_ITEM, REMOVE_ITEM } from '../actions/cart.actions';
+import { ADD_ITEM, REMOVE_ITEM, CONFIRM_CART } from '../actions/cart.actions';
 
 const INITIAL_STATE = {
   items: [],
   total: 27000,
+  status: 'inactive',
 };
 
 const CartReducer = (state = INITIAL_STATE, action) => {
@@ -16,6 +17,12 @@ const CartReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         items: state.items.filter(item => item.id !== action.itemID),
+      };
+    case CONFIRM_CART:
+      return {
+        ...state,
+        items: [],
+        status: action.status,
       };
     default:
       return state;
