@@ -1,7 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
+import { FAB } from 'react-native-elements';
+import { Ionicons } from '@expo/vector-icons';
 import { addItem } from '../store/actions/cart.actions';
+import { COLORS } from '../constants/colors';
 
 export default function BreadDetailScreen() {
   const dispatch = useDispatch();
@@ -20,6 +23,12 @@ export default function BreadDetailScreen() {
       <Text>$ {bread.price}</Text>
       <Text>{bread.weight}</Text>
       <Button title="Agregar al carrito" onPress={handlerAddItemCart} />
+      <FAB
+        icon={<Ionicons name="cart" size={24} color="white" />}
+        placement="right"
+        color={COLORS.primary}
+        onPress={() => navigation.navigate('Cart')}
+      />
     </View>
   );
 }

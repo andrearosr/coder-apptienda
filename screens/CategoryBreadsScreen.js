@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
-import { FlatList, View, ActivityIndicator } from 'react-native';
+import { FlatList, View, ActivityIndicator, StyleSheet } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
+import { FAB } from 'react-native-elements';
+import { Ionicons } from '@expo/vector-icons';
 import BreadItem from '../components/BreadItem';
 import { selectBread, filterBreads } from '../store/actions/bread.actions';
 import { COLORS } from '../constants/colors';
@@ -31,7 +33,7 @@ export default function CategoryBreadsScreen({ navigation }) {
   )
 
   return (
-    <View>
+    <View style={styles.container}>
       {breads.length
         ? (
           <FlatList
@@ -41,6 +43,19 @@ export default function CategoryBreadsScreen({ navigation }) {
           />
         )
         : <ActivityIndicator color={COLORS.accent} size="large" />}
+      <FAB
+        icon={<Ionicons name="cart" size={24} color="white" />}
+        placement="right"
+        color={COLORS.primary}
+        onPress={() => navigation.navigate('Cart')}
+      />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  }
+});
