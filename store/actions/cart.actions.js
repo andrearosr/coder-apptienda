@@ -23,10 +23,10 @@ export const confirmCart = (payload) => {
       });
 
       const response = await api.post('/carrito.json', {
-        data: JSON.stringify({
+        data: {
           date: Date.now(),
           items: { ...payload },
-        }),
+        },
       });
 
       const result = response.data;
