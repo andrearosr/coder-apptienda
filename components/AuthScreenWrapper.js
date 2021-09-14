@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { COLORS } from '../constants/colors';
 
 const AuthScreenWrapper = ({ children, title, message, buttonText, buttonPath }) => {
   const navigation = useNavigation();
@@ -34,7 +35,29 @@ const styles = StyleSheet.create({
     fontFamily: 'OpenSansBold',
     marginBottom: 18,
     textAlign: 'center',
-  }
+  },
+  container: {
+    width: '80%',
+    maxWidth: 400,
+    padding: 12,
+    margin: 12,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 10,
+  },
+  prompt: {
+    alignItems: 'center',
+  },
+  promptMessage: {
+    fontSize: 16,
+    fontFamily: 'OpenSans',
+    color: '#333',
+  },
+  promptButton: {
+    fontSize: 16,
+    fontFamily: 'OpenSansBold',
+    color: COLORS.primary,
+  },
 });
 
 export default AuthScreenWrapper;
