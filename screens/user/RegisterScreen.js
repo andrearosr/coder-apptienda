@@ -6,34 +6,7 @@ import AuthScreenWrapper from '../../components/AuthScreenWrapper';
 import { COLORS } from '../../constants/colors';
 import { signup } from '../../store/actions/auth.action';
 import Input from '../../components/Input';
-
-const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
-
-const formReducer = (state, action) => {
-  if (action.type === FORM_INPUT_UPDATE) {
-    const inputValues = {
-      ...state.inputValues,
-      [action.input]: action.value,
-    }
-    const inputValidities = {
-      ...state.inputValidities,
-      [action.input]: action.isValid,
-    }
-    let formIsValid = true;
-
-    for (const key in inputValidities) {
-      formIsValid = formIsValid && inputValidities[key];
-    }
-
-    return {
-      formIsValid,
-      inputValues,
-      inputValidities,
-    }
-  }
-
-  return state;
-};
+import { formReducer, FORM_INPUT_UPDATE } from './formReducer';
 
 const RegisterScreen = () => {
   const dispatch = useDispatch();

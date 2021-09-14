@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     borderWidth: 1,
     borderRadius: 10,
+    backgroundColor: 'white',
   },
   prompt: {
     alignItems: 'center',
