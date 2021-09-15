@@ -7,6 +7,10 @@ import MainNavigator from './navigation';
 import { Provider } from 'react-redux';
 import store from './store';
 
+if (__DEV__) {
+  import ('./ReactotronConfig').then(() => console.log('Reactotron Configured'))
+}
+
 export default function App() {
   const [loaded] = useFonts({
     OpenSans: require('./assets/fonts/OpenSans-Regular.ttf'),
