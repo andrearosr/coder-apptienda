@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FlatList, View, StyleSheet } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { FAB } from 'react-native-elements';
 import { Ionicons } from '@expo/vector-icons';
 import { selectCategory } from '../store/actions/category.actions';
+import { lookupUser } from '../store/actions/auth.action';
 import GridItem from '../components/GridItem';
 import { COLORS } from '../constants/colors';
 
 export default function CategoriesScreen({ navigation }) {
   const dispatch = useDispatch();
-  const categories = useSelector(state => state.categories.list); 
+  const categories = useSelector(state => state.categories.list);
+  const token = useSelector(state => state.auth.token);
+  
+  useEffect(() => {
+    dispatch(lookupUser(token));
+  }, [])
 
   const handleSelectedCategory = (item) => {
     dispatch(selectCategory(item.id));

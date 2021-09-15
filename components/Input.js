@@ -37,11 +37,13 @@ const Input = props => {
 
   const handleChangeText = text => {
     const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const letterRegex = /^[a-zA-Z\s']+$/;
     let isValid = true;
 
     if (props.required && text.trim().length === 0) isValid = false;
     if (props.email && !emailRegex.test(text.toLowerCase())) isValid = false;
     if (props.minLength && text.length < props.minLength) isValid = false;
+    if (props.onlyLetters && !letterRegex.test(text)) isValid = false;
 
     inputDispatch({
       type: INPUT_CHANGE,
