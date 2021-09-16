@@ -10,9 +10,10 @@ const CartScreen = () => {
   const items = useSelector(state => state.cart.items);
   const total = useSelector(state => state.cart.total);
   const status = useSelector(state => state.cart.status);
+  const userId = useSelector(state => state.auth.userId);
 
   const handlerDeleteItem = (id) => dispatch(removeItem(id));
-  const handlerConfirmCart = () => dispatch(confirmCart(items));
+  const handlerConfirmCart = () => dispatch(confirmCart(items, userId));
 
   const renderItem = (data) => (
     <CartItem item={data.item} onDelete={handlerDeleteItem} />
@@ -53,7 +54,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 12,
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
+    paddingBottom: 120,
   },
   list: {
     flex: 1,

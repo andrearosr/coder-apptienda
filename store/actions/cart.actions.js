@@ -14,7 +14,7 @@ export const removeItem = (itemID) => ({
   itemID,
 });
 
-export const confirmCart = (payload) => {
+export const confirmCart = (payload, userId) => {
   return async dispatch => {
     try {
       dispatch({
@@ -22,13 +22,14 @@ export const confirmCart = (payload) => {
         status: 'loading',
       });
 
-      const response = await fetch(`${URL_API}/carrito.json`, {
+      const response = await fetch(`${URL_API}/ordenes.json`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           date: Date.now(),
+          userId,
           items: { ...payload },
         }),
       });
