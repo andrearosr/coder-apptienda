@@ -12,7 +12,7 @@ const ROUTES = {
   HOME: 'Home',
 }
 
-const BreadNavigator = () => (
+const ShopNavigator = () => (
   <Stack.Navigator
     initialRouteName="Home"
     screenOptions={{
@@ -49,4 +49,4 @@ const BreadNavigator = () => (
   </Stack.Navigator>
 );
 
-export default BreadNavigator;
+export default ShopNavigator;

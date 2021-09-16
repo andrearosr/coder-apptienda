@@ -3,8 +3,9 @@ import { StyleSheet, View, Text } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
-import ShopNavigator from '../shop/BreadNavigator';
-import CartNavigator from '../cart/CartNavigator';
+import ShopNavigator from '../shop';
+import CartNavigator from '../cart';
+import OrdersNavigator from '../orders';
 
 const BottomTabs = createBottomTabNavigator();
 
@@ -37,6 +38,18 @@ const TabNavigator = () => (
           <View style={styles.item}>
             <Ionicons name="md-cart" size={24} color="black" />
             <Text>Carrito</Text>
+          </View>
+        )
+      }}
+    />
+    <BottomTabs.Screen
+      name="OrdersTab"
+      component={OrdersNavigator}
+      options={{
+        tabBarIcon: () => (
+          <View style={styles.item}>
+            <Ionicons name="md-list" size={24} color="black" />
+            <Text>Ordenes</Text>
           </View>
         )
       }}

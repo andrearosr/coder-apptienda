@@ -6,7 +6,7 @@ import { COLORS } from '../../constants/colors';
 
 const Stack = createNativeStackNavigator();
 
-const BreadNavigator = () => (
+const CartNavigator = () => (
   <Stack.Navigator
     initialRouteName="Home"
     screenOptions={{
@@ -27,4 +27,4 @@ const BreadNavigator = () => (
   </Stack.Navigator>
 );
 
-export default BreadNavigator;
+export default CartNavigator;
