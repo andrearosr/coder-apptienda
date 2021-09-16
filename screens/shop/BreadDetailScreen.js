@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { FAB, Button } from 'react-native-elements';
+import { Button } from 'react-native-elements';
 import { Ionicons } from '@expo/vector-icons';
-import { addItem } from '../store/actions/cart.actions';
-import { COLORS } from '../constants/colors';
+import { addItem } from '../../store/actions/cart.actions';
+import { COLORS } from '../../constants/colors';
 
 export default function BreadDetailScreen({ navigation }) {
   const dispatch = useDispatch();
@@ -29,12 +29,6 @@ export default function BreadDetailScreen({ navigation }) {
         icon={<Ionicons name="add" size={24} color="white" />}
         color={COLORS.primary}
         onPress={handlerAddItemCart}
-      />
-      <FAB
-        icon={<Ionicons name="cart" size={24} color="white" />}
-        placement="right"
-        color={COLORS.primary}
-        onPress={() => navigation.navigate('Cart')}
       />
     </View>
   );

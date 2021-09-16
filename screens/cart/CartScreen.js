@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text, FlatList, TouchableOpacity, ActivityIndicator, StyleSheet } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeItem, confirmCart } from '../store/actions/cart.actions';
-import CartItem from '../components/CartItem';
-import { COLORS } from '../constants/colors';
+import { removeItem, confirmCart } from '../../store/actions/cart.actions';
+import CartItem from '../../components/CartItem';
+import { COLORS } from '../../constants/colors';
 
 const CartScreen = () => {
   const dispatch = useDispatch();

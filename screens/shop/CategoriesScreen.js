@@ -1,11 +1,8 @@
 import React from 'react';
 import { FlatList, View, StyleSheet } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { FAB } from 'react-native-elements';
-import { Ionicons } from '@expo/vector-icons';
-import { selectCategory } from '../store/actions/category.actions';
-import GridItem from '../components/GridItem';
-import { COLORS } from '../constants/colors';
+import { selectCategory } from '../../store/actions/category.actions';
+import GridItem from '../../components/GridItem';
 
 export default function CategoriesScreen({ navigation }) {
   const dispatch = useDispatch();
@@ -29,12 +26,6 @@ export default function CategoriesScreen({ navigation }) {
         keyExtractor={item => item.id}
         renderItem={renderGridItem}
         numColumns={2}
-      />
-      <FAB
-        icon={<Ionicons name="cart" size={24} color="white" />}
-        placement="right"
-        color={COLORS.primary}
-        onPress={() => navigation.navigate('Cart')}
       />
     </View>
   );
